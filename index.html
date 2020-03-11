@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bommerfy Your Text</title>
+    <link href="https://fonts.googleapis.com/css?family=Courier+Prime|Playfair+Display+SC&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --content-font: 'Courier Prime', 'Courier New', Courier, monospace;
+            --content-width: 20rem;
+            --heading-font: 'Playfair Display SC';
+        }
+        body, html {
+            font-size: 16px;
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
+            width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--content-font);
+        }
+
+        #container img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        #container img:first-child {
+            margin-bottom: 2em;
+        }
+
+        #container img:last-child {
+            margin-top: 2em;
+        }
+
+        #container {
+            width: var(--content-width);
+            text-align: right;
+        }
+
+        h1 {
+            font-family: var(--heading-font);
+            font-weight: 400;
+            font-size: calc(var(--content-width) / 10.7);
+            white-space: nowrap;
+            padding: 0;
+            margin: 1em 0;
+            text-align: center;
+        }
+
+        textarea {
+            resize: none;
+            border-width: 1px;
+            display: block;
+            height: 10em;
+            --pad: 1em;
+            padding: 0.6em var(--pad);
+            width: calc(var(--content-width) - 2 * var(--pad) - 2px);
+            margin-bottom: 1em;
+            font-family: var(--content-font);
+        }
+
+        button {
+            padding: 4px 4px 2px 4px;
+            margin: 0;
+            font-family: var(--content-font);
+        }
+    </style>
+</head>
+<body>
+    <!-- Content -->
+    <div id="container">
+        <img src="./ornaments/top_ornament.svg" />
+
+        <h1>Boomerfy Your Text</h1>
+        <textarea id="in" placeholder="Write or paste your text..."></textarea>
+        <textarea id="out" readonly></textarea>
+
+        <button id="copy">Copy Output!</button>
+
+        <img src="./ornaments/bottom_ornament.svg" />
+    </div>
+
+    <!-- GitLink -->
+    <style>
+        .gitlink {
+            position: absolute;
+            bottom: 1.8em;
+            right: 1.9em;
+            transition: all .07s ease-in-out;
+            padding: 1em 1em 0.9em 1em;
+            background: #fff;
+            border: 1px solid #0001;
+            border-radius: 6px;
+        }
+        .gitlink img {
+            opacity: 0.3;
+        }
+        .gitlink img:hover {
+            opacity: 1;
+            cursor: pointer;
+        }
+        .gitlink, .gitlink img {
+            margin: 0;
+        }
+        .gitlink img {
+            padding: 0;
+        }
+    </style>
+    <a class="gitlink" target="_blank" href="https://github.com/Demonstrandum/boomer">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg"
+            height=22 alt="GitHub" />
+    </a>
+
+    <!-- Scripts -->
+    <script src="boomerfy.js"></script>
+    <script>
+        // Clear text boxes...
+        const in_text = document.getElementById('in');
+        const out_text = document.getElementById('out');
+
+        out_text.value = boomerfy('Ok, boomer...');
+
+        in_text.addEventListener('input', e =>
+            out_text.value = boomerfy(in_text.value));
+        out_text.addEventListener('click', e =>
+            out_text.select());
+
+        const copy = document.getElementById('copy');
+        copy.addEventListener('click', e => {
+            out_text.select();
+            document.execCommand('copy');
+
+            if (window.getSelection)
+                window.getSelection().removeAllRanges();
+            else if (document.selection)
+                document.selection.empty();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "boomer",
+  "version": "1.0.0",
+  "description": "Boomerfy your text.",
+  "repository": "github.com/Demonstrandum/boomer",
+  "author": "Demonstrandum <moi@knutsen.co>",
+  "license": "GPL-3"
+}
