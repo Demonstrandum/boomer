@@ -4,7 +4,7 @@ package-lock.json
 yarn.lock
 
 # now
-.now
+.now/
 
 # Logs
 *.log
