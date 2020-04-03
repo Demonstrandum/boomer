@@ -30,35 +30,56 @@ String.prototype.demented_spelling = function () {
             return 'yore';
         case 'their':
             return 'there';
+        case 'theyre':
+            return 'their';
         case 'they\'re':
             return 'their';
         case 'there':
             return 'their';
+        case 'you\'re':
+            return 'your';
+        case 'youre':
+            return 'your';
         default:
             break;
     }
     return given;
 }
 
-const boomerfy = original => {
-    if (original.trim().length < 1)
-        return boomerfy("Ok, boomer.");
 
-    let string = original
-        .toLowerCase()
-        .split(' ')
-        .map(e => e.demented_spelling()).join(' ')
-        .replace(/(.*)n't(.*)/g, "$1'nt$2")
-        .replace(/(.*)'re(.*)/, '$1r$2')
-        .replace(/([^\.])\./g, '$1 .');
+function boomerfy(val, original) {
+        if (original.trim().length < 1)
+            return boomerfy("Ok, boomer.");
 
-    string = string.split(/[ ]/)
-        .map(s => s.demented_upcase(0.1))
-        .demented_join(' ', ',', 0.01);
-    string = string.split(/[ ]/).demented_join(' ', ' ... ', 0.01);
-    string = string.split(/[ ]/).demented_join(' ', ' ', prob=0.02);
 
-    string = string
-        .replace(/,/g, ' ,');
-    return string;
-};
+        let string = original;
+        if (val > 0) {
+            string = string
+                .toLowerCase()
+                .split(' ')
+                .map(e => e.demented_spelling()).join(' ')
+                .replace(/(.*)n't(.*)/g, "$1'nt$2")
+                .replace(/(.*)'re(.*)/, '$1r$2')
+                .replace(/([^\.])\./g, '$1 .');
+        } else {
+            string = string;
+        }
+
+        var max = 5
+        if (val < max) {
+            string = string.split(/[ ]/)
+                .map(s => s.demented_upcase(val*0.1))
+                .demented_join(' ', ',', val*0.01);
+        } else {
+            string = string.split(/[ ]/)
+            .map(s => s.demented_upcase(max*0.1))
+            .demented_join(' ', ',', max*0.01);
+        }
+
+        string = string.split(/[ ]/).demented_join(' ', ' ... ', val*0.01);
+        string = string.split(/[ ]/).demented_join(' ', ' ', prob=val*0.02);
+
+        string = string
+            .replace(/,/g, ' ,');
+        return string;
+}

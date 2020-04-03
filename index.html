@@ -69,6 +69,9 @@
             margin: 0;
             font-family: var(--content-font);
         }
+        .slidercontainer {
+            text-align:center;
+        }
     </style>
 </head>
 <body>
@@ -79,6 +82,10 @@
         <h1>Boomerfy Your Text</h1>
         <textarea id="in" placeholder="Write or paste your text..."></textarea>
         <textarea id="out" readonly></textarea>
+
+        <div class="slidercontainer">
+            derangement <input type="range" min="0" max="10" value="5" id="slider">
+        </div>
 
         <button id="copy">Copy Output!</button>
 
@@ -119,14 +126,21 @@
     <!-- Scripts -->
     <script src="boomerfy.js"></script>
     <script>
+
+    var scalar = document.getElementById("slider");
+
+
         // Clear text boxes...
         const in_text = document.getElementById('in');
         const out_text = document.getElementById('out');
 
-        out_text.value = boomerfy('Ok, boomer...');
+        out_text.value = boomerfy(1, 'Ok, boomer...');
+
+        scalar.addEventListener('input', e=>
+            out_text.value = boomerfy(scalar.value, in_text.value));
 
         in_text.addEventListener('input', e =>
-            out_text.value = boomerfy(in_text.value));
+            out_text.value = boomerfy(scalar.value, in_text.value));
         out_text.addEventListener('click', e =>
             out_text.select());
 
