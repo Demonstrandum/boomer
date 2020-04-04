@@ -68,10 +68,8 @@ const boomerfy = (original, scale) => {
         string = string.split(/[ ]/).demented_join(' ', ' ... ', scale * 0.01);
         string = string.split(/[ ]/).demented_join(' ', ' ', scale * 0.02);
 
-        console.log('before:', string);
         string = string
             .replace(/([\,\?\:\;\-\!\$\£\%\`\(\)])/g, ' $1');
-        console.log('after:', string);
 
         string = string.split(/[ ]/).demented_join(' ', ',,, ', scale * 0.01);
 
