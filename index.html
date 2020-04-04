@@ -134,13 +134,11 @@
         const in_text = document.getElementById('in');
         const out_text = document.getElementById('out');
 
-        out_text.value = boomerfy(1, 'Ok, boomer...');
+        out_text.value = boomerfy('Ok, boomer...', 1);
 
-        scalar.addEventListener('input', e=>
-            out_text.value = boomerfy(scalar.value, in_text.value));
+        [in_text, scalar].forEach(e => addEventListener('input', e =>
+            out_text.value = boomerfy(in_text.value, scalar.value)));
 
-        in_text.addEventListener('input', e =>
-            out_text.value = boomerfy(scalar.value, in_text.value));
         out_text.addEventListener('click', e =>
             out_text.select());
 
