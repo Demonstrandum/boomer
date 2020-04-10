@@ -49,7 +49,8 @@ String.prototype.demented_spelling = function () {
 
 const boomerfy = (original, scale) => {
         if (original.trim().length < 1)
-            return boomerfy("Ok, boomer.");
+            return boomerfy("Ok, boomer.", scale);
+        if (scale <= 0) return original;
 
         let string = original;
         if (scale > 0) string = original

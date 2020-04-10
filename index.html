@@ -69,8 +69,20 @@
             margin: 0;
             font-family: var(--content-font);
         }
-        .slidercontainer {
-            text-align:center;
+        .slider-container {
+            display: flex;
+            width: var(--content-width);
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 0.9em;
+        }
+        .slider-container input {
+            display: inline;
+            flex: 100%;
+            margin: 0 0 0 20px;
+            padding: 0;
+            transition: all .15s ease;
         }
     </style>
 </head>
@@ -83,8 +95,23 @@
         <textarea id="in" placeholder="Write or paste your text..."></textarea>
         <textarea id="out" readonly></textarea>
 
-        <div class="slidercontainer">
-            derangement <input type="range" min="0" max="10" value="5" id="slider">
+        <div class="slider-container">
+            <span>Derangement:</span>
+            <input id="slider" type="range"
+                step="1" max="10" min="0" list="ticks">
+            <datalist id="ticks">
+                <option value="0" label="off">off</option>
+                <option value="1"></option>
+                <option value="2"></option>
+                <option value="3"></option>
+                <option value="4"></option>
+                <option value="5" label="moderate"></option>
+                <option value="6"></option>
+                <option value="7"></option>
+                <option value="8"></option>
+                <option value="9"></option>
+                <option value="10" label="max"></option>
+            </datalist>
         </div>
 
         <button id="copy">Copy Output!</button>
