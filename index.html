@@ -153,9 +153,7 @@
     <!-- Scripts -->
     <script src="boomerfy.js"></script>
     <script>
-
-    var scalar = document.getElementById("slider");
-
+        const scalar = document.getElementById("slider");
 
         // Clear text boxes...
         const in_text = document.getElementById('in');
@@ -163,14 +161,14 @@
 
         out_text.value = boomerfy('Ok, boomer...', 1);
 
-        [in_text, scalar].forEach(e => addEventListener('input', e =>
+        [in_text, scalar].forEach(e => e.addEventListener('input', _ =>
             out_text.value = boomerfy(in_text.value, scalar.value)));
 
-        out_text.addEventListener('click', e =>
+        out_text.addEventListener('click', _ =>
             out_text.select());
 
         const copy = document.getElementById('copy');
-        copy.addEventListener('click', e => {
+        copy.addEventListener('click', _ => {
             out_text.select();
             document.execCommand('copy');
 

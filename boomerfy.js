@@ -48,31 +48,31 @@ String.prototype.demented_spelling = function () {
 
 
 const boomerfy = (original, scale) => {
-        if (original.trim().length < 1)
-            return boomerfy("Ok, boomer.", scale);
-        if (scale <= 0) return original;
+    if (original.trim().length < 1)
+        return boomerfy("Ok, boomer.", scale);
+    if (scale <= 0) return original;
 
-        let string = original;
-        if (scale > 0) string = original
-            .toLowerCase()
-            .split(' ')
-            .map(e => e.demented_spelling()).join(' ')
-            .replace(/(.*)n't(.*)/g, "$1'nt$2")
-            .replace(/(.*)'re(.*)/g, '$1r$2')
-            .replace(/([^\.])\./g, '$1 .');
+    let string = original;
+    if (scale > 0) string = original
+        .toLowerCase()
+        .split(' ')
+        .map(e => e.demented_spelling()).join(' ')
+        .replace(/(.*)n't(.*)/g, "$1'nt$2")
+        .replace(/(.*)'re(.*)/g, '$1r$2')
+        .replace(/([^\.])\./g, '$1 .');
 
-        const clamp_uppercase = scale < 5 ? scale : 5;
-        string = string.split(/[ ]/)
-            .map(s => s.demented_upcase(clamp_uppercase * 0.1))
-            .demented_join(' ', ',', clamp_uppercase * 0.01);
+    const clamp_uppercase = scale < 5 ? scale : 5;
+    string = string.split(/[ ]/)
+        .map(s => s.demented_upcase(clamp_uppercase * 0.1))
+        .demented_join(' ', ',', clamp_uppercase * 0.01);
 
-        string = string.split(/[ ]/).demented_join(' ', ' ... ', scale * 0.01);
-        string = string.split(/[ ]/).demented_join(' ', ' ', scale * 0.02);
+    string = string.split(/[ ]/).demented_join(' ', ' ... ', scale * 0.01);
+    string = string.split(/[ ]/).demented_join(' ', ' ', scale * 0.02);
 
-        string = string
-            .replace(/([\,\?\:\;\-\!\$\£\%\`\(\)])/g, ' $1');
+    string = string
+        .replace(/([\,\?\:\;\-\!\$\£\%\`\(\)])/g, ' $1');
 
-        string = string.split(/[ ]/).demented_join(' ', ',,, ', scale * 0.01);
+    string = string.split(/[ ]/).demented_join(' ', ',,, ', scale * 0.01);
 
-        return string;
+    return string;
 }
